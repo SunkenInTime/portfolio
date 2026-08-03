@@ -142,7 +142,7 @@ img {
     --gap: 24px;
     --content-gap: 20px;
     --nav-width: 1024px;
-    --main-width: 720px;
+    --main-width: 780px;
     --header-height: 60px;
     --footer-height: 60px;
     --radius: 8px;
@@ -1249,4 +1249,13 @@ h6:hover .anchor {
         width: 100%;
         aspect-ratio: 16 / 9;
     }
+}
+
+/* Code blocks wrap instead of scrolling horizontally — article code excerpts
+   are prose-like .md file contents, and clipped lines are unreadable. */
+.post-content pre,
+.post-content pre code {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-break: normal;
 }

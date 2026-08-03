@@ -5,13 +5,13 @@ date: 2026-08-02
 image: "/images/agents-md-cover.jpg"
 ---
 
-[@theo](https://x.com/theo) recently made a video walking through his AGENTS.md and the thinking behind it. This is my version of that. I'm going to walk through how I wrote the CLAUDE.md for [Weaver](/projects/weaver/), the desktop widget framework I'm building, and the AGENTS.md for [Icarus](https://icarusstrats.com), my Valorant strategy tool with a 1,000+ users. Same skeleton, completely different content, and that difference is the entire point.
+[@theo](https://x.com/theo) recently made a video walking through his AGENTS.md and the thinking behind it. This is my version of that. I'm going to walk through how I wrote the CLAUDE.md for [Weaver](/projects/weaver/), the desktop widget framework I'm building, and the AGENTS.md for [Icarus](https://icarusstrats.com), my Valorant strategy tool with 1,000+ users. Same skeleton, completely different content, and that difference is the entire point.
 
 By the end you should be able to write your own. It takes about an hour and a half. It will save you way more than that.
 
 ## step 0: do the homework first
 
-Before you write anything, go watch Matt Pocock's([@mattpocockuk](https://x.com/mattpocockuk)) ["Building Great Agent Skills" video](https://youtu.be/UNzCG3lw6O0?si=rB1iohsAbRBGV6I8) and read his "writing-great-skills" agent skill. Seriously. A lot of the actual technique in this is just knowing how to codify information for an agent, and he covers it better than anyone.
+Before you write anything, go watch Matt Pocock's ([@mattpocockuk](https://x.com/mattpocockuk)) ["Building Great Agent Skills" video](https://youtu.be/UNzCG3lw6O0?si=rB1iohsAbRBGV6I8) and read his "writing-great-skills" agent skill. Seriously. A lot of the actual technique in this is just knowing how to codify information for an agent, and he covers it better than anyone.
 
 My actual workflow when I want a base draft of a skill or a section: I have Fable look at the writing-great-skills skill, I talk about what I want codified, and it gives me a rough draft. Then I edit it myself, or ask it to clean stuff up. The model gets you to a solid base format fast. Your job is the taste.
 
@@ -31,7 +31,7 @@ Think of this like a Plinko board. You drop the ball at the top and it bounces o
 
 So give your agent your psychosis. Your specific obsessions, your scars, your taste. That's the stuff a general LLM won't assume on its own.
 
-## lets walkthrough an example
+## let's walk through an example
 
 ![Weaver running agent-built widgets beside their TSX source](/images/weaver-live-desktop.png)
 

@@ -33,6 +33,10 @@ So give your agent your psychosis. Your specific obsessions, your scars, your ta
 
 ## lets walkthrough an example
 
+![Weaver running agent-built widgets beside their TSX source](/images/weaver-live-desktop.png)
+
+*Weaver running agent-built widgets beside their TSX source — the file below is what steered them.*
+
 [Weaver](/projects/weaver/) is the framework I just made. Here's how the file opens:
 
 > i(Dara,me) want to write this to you(agent). weaver we are building this together.
@@ -132,6 +136,10 @@ Rules the agent can break, but only with very loud approval. Not hills to die on
 ## icarus: psychosis changes with projects
 
 Now here's the part that proves the whole thesis. [Icarus](https://icarusstrats.com) is my desktop Valorant strategy tool, built in Flutter, shipped as an installer with an auto-updater, over a thousand users. Until recently its entire agent file was one line: "don't edit *.g.dart files." I just rewrote it using the exact same skeleton as Weaver. Same opening line format, glossary of parties, working vocabulary, philosophy sections, general rules.
+
+![The Icarus strategy board](/images/icarus-board-preview.png)
+
+*Icarus — same skeleton in its agent file, completely different psychosis.*
 
 The content is completely different, because the stakes are completely different. Weaver's psychosis is performance receipts and loud budgets. Icarus's psychosis is data safety and users who never read logs:
 

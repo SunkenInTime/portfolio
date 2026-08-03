@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostEntry from '../../components/PostEntry.astro';
+import { formatDate, readingTime } from '../../lib/meta';
+
+const articles = (await getCollection('articles')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<Base title="Articles | Dara Adedeji" list>
+  <header class="page-header">
+    <div class="breadcrumbs"><a href="/">Home</a></div>
+    <h1>Articles</h1>
+  </header>
+  {articles.map((entry) => (
+    <PostEntry
+      title={entry.data.title}
+      description={entry.data.description}
+      image={entry.data.image}
+      meta={`${formatDate(entry.data.date)} · ${readingTime(entry.body)} · Dara Adedeji`}
+      url={`/articles/${entry.id}/`}
+    />
+  ))}
+</Base>

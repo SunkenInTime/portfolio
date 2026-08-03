@@ -1,0 +1,49 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  meta: string;
+  url: string;
+  /** Compact layout: text beside a fixed-size thumbnail instead of a full-width cover */
+  compact?: boolean;
+}
+
+const { title, description, image, meta, url, compact = false } = Astro.props;
+---
+
+{compact ? (
+  <article class="post-entry compact-entry">
+    <div class="compact-body">
+      <header class="entry-header">
+        <h2>{title}</h2>
+      </header>
+      {description && (
+        <section class="entry-content">
+          <p>{description}</p>
+        </section>
+      )}
+      <footer class="entry-footer">{meta}</footer>
+    </div>
+    {image && <img class="compact-thumb" src={image} alt="" loading="lazy" />}
+    <a class="entry-link" aria-label={`post link to ${title}`} href={url}></a>
+  </article>
+) : (
+  <article class="post-entry">
+    <header class="entry-header">
+      <h2>{title}</h2>
+    </header>
+    {description && (
+      <section class="entry-content">
+        <p>{description}</p>
+      </section>
+    )}
+    {image && (
+      <section class="entry-content">
+        <img src={image} alt="" />
+      </section>
+    )}
+    <footer class="entry-footer">{meta}</footer>
+    <a class="entry-link" aria-label={`post link to ${title}`} href={url}></a>
+  </article>
+)}

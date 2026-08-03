@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatDate, readingTime } from '../../lib/meta';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('articles');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Base
+  title={`${entry.data.title} | Dara Adedeji`}
+  description={entry.data.description}
+  image={entry.data.image}
+>
+  <article class="post-single">
+    <header class="post-header">
+      <div class="breadcrumbs">
+        <a href="/">Home</a>&nbsp;»&nbsp;<a href="/articles/">Articles</a>
+      </div>
+      <h1 class="post-title">{entry.data.title}</h1>
+      {entry.data.description && (
+        <div class="post-description">{entry.data.description}</div>
+      )}
+      <div class="post-meta">
+        <span title={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</span>
+        &nbsp;·&nbsp;{readingTime(entry.body)}&nbsp;·&nbsp;Dara Adedeji
+      </div>
+    </header>
+    <div class="post-content">
+      <Content />
+    </div>
+    <footer class="post-footer"></footer>
+  </article>
+</Base>

@@ -19,12 +19,14 @@ const { Content } = await render(entry);
   title={`${entry.data.title} | Dara Adedeji`}
   description={entry.data.description}
   image={entry.data.image}
+  noindex={entry.data.draft}
 >
   <article class="post-single">
     <header class="post-header">
       <div class="breadcrumbs">
         <a href="/">Home</a>&nbsp;»&nbsp;<a href="/articles/">Articles</a>
       </div>
+      {entry.data.draft && <p class="post-description">Draft · Shared for feedback</p>}
       <h1 class="post-title">{entry.data.title}</h1>
       {entry.data.description && (
         <div class="post-description">{entry.data.description}</div>

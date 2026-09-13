@@ -5,6 +5,7 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  noindex?: boolean;
   /** PaperMod gives list-type pages (home, section lists) a gray body background */
   list?: boolean;
 }
@@ -14,6 +15,7 @@ const {
   description = 'Dara Adedeji — I make things.',
   image,
   list = false,
+  noindex = false,
 } = Astro.props;
 
 const menu = [
@@ -35,6 +37,7 @@ const current = Astro.url.pathname.endsWith('/')
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <meta name="author" content="Dara Adedeji" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

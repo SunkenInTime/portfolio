@@ -4,7 +4,7 @@ import Base from '../../layouts/Base.astro';
 import PostEntry from '../../components/PostEntry.astro';
 import { formatDate, readingTime } from '../../lib/meta';
 
-const articles = (await getCollection('articles')).sort(
+const articles = (await getCollection('articles', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 ---

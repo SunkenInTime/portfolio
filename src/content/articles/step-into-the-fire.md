@@ -1,6 +1,8 @@
 ---
 title: "I Want to Step Into the Fire and Burn to Death. I Think I’d Be Happy."
+description: "the future belongs to people who care too much"
 date: 2026-09-29
+image: "/images/step-into-the-fire-cover.jpg"
 ---
 
 I want to step into the fire and burn to death.

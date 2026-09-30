@@ -1,7 +1,6 @@
 ---
 title: "I Want to Step Into the Fire and Burn to Death. I Think I’d Be Happy."
-date: 2026-09-13
-draft: true
+date: 2026-09-29
 ---
 
 I want to step into the fire and burn to death.

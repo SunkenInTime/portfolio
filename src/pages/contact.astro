@@ -1,19 +1,11 @@
 ---
-import Base from '../layouts/Base.astro';
+import Site from '../layouts/Site.astro';
 ---
 
-<Base title="Contact | Dara Adedeji" list>
-  <header class="page-header">
-    <div class="breadcrumbs"><a href="/">Home</a></div>
+<Site title="Contact | Dara Adedeji" section="contact">
+  <section class="plain">
     <h1>Contact</h1>
-  </header>
-  <div class="post-content">
-    <h4>Discord</h4>
-    <p>
-      If you have a short message or question, drop a message via Discord
-      <strong>SunkenInTime</strong> or daraadedeji07@gmail.com.
-    </p>
-    <h4>Email</h4>
-    <p>For enquiries or longer messages, please email me.</p>
-  </div>
-</Base>
+    <p>Short message or question: Discord, <b>SunkenInTime</b>.</p>
+    <p>Anything longer: <a class="u" href="mailto:daraadedeji07@gmail.com"><b>daraadedeji07@gmail.com</b></a>.</p>
+  </section>
+</Site>

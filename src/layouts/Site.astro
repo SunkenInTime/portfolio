@@ -1,0 +1,87 @@
+---
+/* Shell for every page except the home: top row, content, shared footer with the now-playing line. */
+import '../styles/site.css';
+import { HEAD_SCRIPT } from '../lib/theme.js';
+import { links } from '../lib/links';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  /** which top-nav word is the current section */
+  section?: 'work' | 'writing' | 'contact';
+}
+
+const { title, description = 'Dara Adedeji. I build software, film myself doing it, and occasionally write about why.', image, noindex = false, section } = Astro.props;
+const current = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const nav = [
+  { name: 'work', url: '/projects/' },
+  { name: 'writing', url: '/articles/' },
+  { name: 'contact', url: '/contact/' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="author" content="Dara Adedeji" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image || '/images/myProfile.jpg', Astro.site)} />
+    <link rel="canonical" href={new URL(current, Astro.site)} />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f7f7f4" />
+    <script is:inline set:html={HEAD_SCRIPT} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="site">
+      <header class="top">
+        <a class="me u" href="/">dara adedeji</a>
+        <nav aria-label="Sections">
+          {nav.map((n) => (
+            <a class="u" href={n.url} aria-current={section === n.name ? 'page' : undefined}>{n.name}</a>
+          ))}
+        </nav>
+      </header>
+
+      <slot />
+
+      <footer class="foot">
+        <a class="now" id="now" href="#" target="_blank" rel="noopener" aria-live="polite">
+          <img alt="" id="now-art" />
+          <span><b id="now-track"></b> · <span id="now-artist"></span></span>
+          <span class="bar"><i id="now-bar"></i></span>
+        </a>
+        <div class="links">
+          {links.map((l, i) => (
+            <>
+              {i > 0 && <span>·</span>}
+              <a href={l.url} target="_blank" rel="noopener noreferrer me">{l.name}</a>
+            </>
+          ))}
+          <span>·</span>
+          <button class="theme" id="theme" type="button" aria-label="Switch theme">dark</button>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      import { startNowPlaying } from '../lib/now.js';
+      import { themeButton } from '../lib/theme.js';
+      const $ = (id) => document.getElementById(id);
+      const tb = $('theme'); if (tb) themeButton(tb);
+      startNowPlaying({ now: $('now'), art: $('now-art'), track: $('now-track'), artist: $('now-artist'), bar: $('now-bar') }, import.meta.env.PUBLIC_API_BASE || '');
+    </script>
+  </body>
+</html>

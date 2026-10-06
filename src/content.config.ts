@@ -19,6 +19,8 @@ const articles = defineCollection({
   schema: z.object({
     title: z.string(),
     draft: z.boolean().default(false),
+    /** kept at its URL, but off the list and out of search */
+    archived: z.boolean().default(false),
     description: z.string().optional(),
     date: z.coerce.date(),
     image: z.string().optional(),

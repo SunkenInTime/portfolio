@@ -1,8 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
+import Site from '../../layouts/Site.astro';
 
-// These URLs are linked from app store listings — slugs must not change.
+// These URLs are linked from app store listings: the slugs must not change.
 export async function getStaticPaths() {
   const pages = await getCollection('legal');
   return pages.map((page) => ({
@@ -15,15 +15,15 @@ const { page } = Astro.props;
 const { Content } = await render(page);
 ---
 
-<Base title={`${page.data.title} | Dara Adedeji`}>
-  <article class="post-single">
-    <header class="post-header">
-      <h1 class="post-title">{page.data.title}</h1>
-      {page.data.updated && <div class="post-meta">{page.data.updated}</div>}
+<Site title={`${page.data.title} | Dara Adedeji`}>
+  <article class="reader">
+    <header>
+      <div class="kicker">legal</div>
+      <h1 class="title">{page.data.title}</h1>
+      {page.data.updated && <div class="meta">{page.data.updated}</div>}
     </header>
-    <div class="post-content">
+    <div class="prose">
       <Content />
     </div>
-    <footer class="post-footer"></footer>
   </article>
-</Base>
+</Site>

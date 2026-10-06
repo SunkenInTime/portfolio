@@ -1,27 +1,27 @@
 ---
 import { getCollection } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import PostEntry from '../../components/PostEntry.astro';
-import { readingTime } from '../../lib/meta';
+import Site from '../../layouts/Site.astro';
 
 const projects = (await getCollection('projects')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 ---
 
-<Base title="Projects | Dara Adedeji" list>
-  <header class="page-header">
-    <div class="breadcrumbs"><a href="/">Home</a></div>
-    <h1>Projects</h1>
-  </header>
-  {projects.map((project) => (
-    <PostEntry
-      title={project.data.title}
-      description={project.data.description}
-      image={project.data.image}
-      meta={`${readingTime(project.body)} · Dara Adedeji`}
-      url={`/projects/${project.id}/`}
-      compact
-    />
-  ))}
-</Base>
+<Site title="Work | Dara Adedeji" section="work">
+  <section class="list">
+    <h1>Work</h1>
+    <p class="lead">Things I built and shipped.</p>
+    <div class="entries">
+      {projects.map((project) => (
+        <a class="entry" href={`/projects/${project.id}/`}>
+          {project.data.image ? <img class="cover" src={project.data.image} alt="" loading="lazy" /> : <span class="cover blank" />}
+          <div>
+            <div class="when">{project.data.timeframe} · {project.data.status}</div>
+            <h2>{project.data.title}</h2>
+            <p>{project.data.tagline}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Site>

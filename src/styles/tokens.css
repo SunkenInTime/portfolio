@@ -1,0 +1,64 @@
+/* Shared tokens for every page. Light by default, dark via html[data-theme]. */
+:root {
+  --paper: #f7f7f4;
+  --tint: #f7f7f4;
+  --ink: #161616;
+  --mute: #7d7d77;
+  --line: #e2e2dd;
+  --well: #efefe9;
+  --sans: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --scheme: light;
+  --tintAmount: .06;
+}
+/* dark: the same paper, after dark. Warm near-black, soft off-white ink. */
+html[data-theme="dark"] {
+  --paper: #151514;
+  --tint: #151514;
+  --ink: #ebebe6;
+  --mute: #9a9a93;
+  --line: #2b2b29;
+  --well: #1e1e1c;
+  --scheme: dark;
+  --tintAmount: .1;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+html { color-scheme: var(--scheme); -webkit-text-size-adjust: 100%; }
+body {
+  min-height: 100vh;
+  background: var(--tint);
+  color: var(--ink);
+  font: 16px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 1.6s, color .4s;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, h4, p, ul, ol, figure, blockquote, pre { margin: 0; }
+
+/* the underline that draws itself, used by every nav */
+.u { position: relative; padding-bottom: 3px; }
+.u::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.2, .8, .2, 1); }
+.u:hover::after, .u:focus-visible::after, .u[aria-current]::after { transform: scaleX(1); }
+.u:focus-visible { outline: none; }
+
+/* the footer shared by the home and the inner pages */
+.foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; font: 11px/1.6 var(--mono); color: var(--mute); }
+.foot .links { display: flex; flex-wrap: wrap; gap: 0 6px; margin-left: auto; }
+.foot .links a:hover { color: var(--ink); }
+.foot .links span { opacity: .6; }
+.foot .links .theme { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+.foot .links .theme:hover { color: var(--ink); }
+.now { display: inline-flex; align-items: center; gap: 10px; opacity: 0; visibility: hidden; transform: translateY(4px); transition: opacity .8s, transform .8s, visibility 0s .8s; }
+.now.on { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.now img { width: 22px; height: 22px; object-fit: cover; }
+.now b { color: var(--ink); font-weight: 400; }
+.now .bar { width: 48px; height: 1px; background: var(--line); }
+.now .bar i { display: block; height: 100%; width: 0; background: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
+  .u::after { transition: none; }
+}

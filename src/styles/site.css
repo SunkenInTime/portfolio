@@ -1,0 +1,90 @@
+/* Inner pages: lists and the reader. The home has its own sheet; both share tokens.css. */
+@import './tokens.css';
+
+.site { max-width: 768px; margin: 0 auto; padding: 28px 24px 56px; min-height: 100vh; display: flex; flex-direction: column; }
+.site > .foot { margin-top: auto; padding-top: 96px; }
+
+.top { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; font: 13px var(--mono); }
+.top .me { color: var(--mute); }
+.top .me:hover { color: var(--ink); }
+.top nav { display: flex; gap: 22px; }
+
+/* lists: the cover is the entry. Picture left, words right, space instead of rules. */
+.list { margin-top: 96px; }
+.list h1 { font: 400 26px/1.2 var(--sans); letter-spacing: -.012em; }
+.list .lead { color: var(--mute); margin-top: 8px; font-weight: 300; }
+.entries { margin-top: 48px; display: flex; flex-direction: column; gap: 44px; }
+.entry { display: grid; grid-template-columns: 240px 1fr; gap: 28px; align-items: center; }
+.entry .cover { display: block; width: 240px; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 4px; background: var(--well); transition: transform .6s cubic-bezier(.2, .8, .2, 1); }
+.entry .cover.blank { background: linear-gradient(135deg, var(--well), var(--line)); }
+.entry .when { font: 11px/1.6 var(--mono); color: var(--mute); }
+.entry h2 { font: 500 20px/1.3 var(--sans); letter-spacing: -.012em; margin-top: 5px; text-wrap: balance; transition: color .3s; }
+.entry p { color: var(--mute); margin-top: 7px; font-size: 15.5px; font-weight: 300; line-height: 1.5; text-wrap: pretty; }
+.entry:hover h2 { color: var(--ink); filter: contrast(1.3); }
+.entry:hover .cover { transform: scale(1.015); }
+
+/* the reader */
+.reader { position: relative; max-width: 720px; margin: 96px auto 0; --bleed: min(1040px, calc(100vw - 48px)); } /* how wide pictures may go */
+
+/* the section marker, in the left margin on wide screens */
+.toc { position: absolute; right: 100%; top: 0; bottom: 0; width: 200px; margin-right: max(48px, calc((var(--bleed) - 720px) / 2 + 40px)); } /* sits outside the pictures' edge */
+.toc-inner { position: sticky; top: 35vh; }
+.toc[hidden] { display: none; }
+.toc-list { margin: 0; padding: 0; list-style: none; font: 11px/1.6 var(--mono); color: var(--mute); }
+.toc-list li { padding: 5px 0 5px 14px; }
+.toc-list a { display: block; transition: color .35s; }
+.toc-list li.on a { color: var(--ink); }
+.toc-bar { position: absolute; left: 0; top: 0; width: 1px; background: var(--ink); will-change: transform, height; }
+@media (max-width: 1180px) { .toc { display: none; } }
+/* while the marker is on screen, pictures stop short of it; without it they take the whole width */
+@media (min-width: 1181px) { .reader { --bleed: min(1040px, calc(100vw - 544px)); } }
+@media (min-width: 1181px) and (max-width: 1300px) { .reader { --bleed: max(720px, min(1040px, calc(100vw - 544px))); } } /* leaves room for the marker beside the picture */
+.reader .kicker { font: 11px/1.6 var(--mono); color: var(--mute); }
+.reader h1.title { font: 500 34px/1.15 var(--sans); letter-spacing: -.016em; margin-top: 10px; }
+.reader .desc { color: var(--mute); margin-top: 12px; font-size: 18px; font-weight: 300; line-height: 1.5; }
+.reader .meta { font: 11px/1.6 var(--mono); color: var(--mute); margin-top: 18px; }
+
+.prose { margin-top: 48px; font-size: 18.5px; line-height: 1.68; font-weight: 400; }
+.prose > * + * { margin-top: 1.25em; }
+.prose h2 { font: 500 23px/1.25 var(--sans); letter-spacing: -.012em; margin-top: 2.4em; }
+.prose h3 { font: 500 18px/1.3 var(--sans); margin-top: 2em; }
+.prose h4 { font: 500 16px/1.4 var(--sans); margin-top: 1.8em; }
+.prose h2 + *, .prose h3 + *, .prose h4 + * { margin-top: .7em; }
+.prose a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--mute); }
+.prose a:hover { text-decoration-color: var(--ink); }
+.prose strong { font-weight: 500; }
+.prose em { font-style: italic; }
+.prose ul, .prose ol { padding-left: 1.3em; }
+.prose li + li { margin-top: .35em; }
+/* pictures are free of the text measure: they centre on the column and spread to the breakout width */
+.prose img, .prose video, .prose iframe, .prose figure { width: var(--bleed); max-width: var(--bleed); margin: 2.4em 0 2.4em calc(50% - var(--bleed) / 2); border-radius: 4px; }
+.prose figure img, .prose figure video, .prose figure iframe { width: 100%; max-width: 100%; margin: 0; }
+.prose iframe { aspect-ratio: 16 / 9; height: auto; border: 0; }
+.prose p > img:only-child { display: block; }
+.prose figcaption { font: 11px/1.6 var(--mono); color: var(--mute); margin-top: 10px; text-align: center; }
+.prose blockquote { border-left: 1px solid var(--ink); padding-left: 18px; color: var(--mute); font-weight: 300; }
+.prose hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
+.prose code { font: 14px/1.5 var(--mono); background: var(--well); padding: .1em .35em; border-radius: 3px; }
+.prose pre { background: var(--well); border-radius: 3px; padding: 16px 18px; overflow-x: auto; font: 13.5px/1.6 var(--mono); }
+.prose pre code { background: none; padding: 0; font: inherit; }
+.prose table { border-collapse: collapse; width: 100%; font-size: 15px; }
+.prose th, .prose td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.prose th { font-weight: 500; }
+
+.plain { margin-top: 96px; max-width: 560px; }
+.plain h1 { font: 400 26px/1.2 var(--sans); letter-spacing: -.012em; }
+.plain p { margin-top: 14px; color: var(--mute); font-weight: 300; }
+.plain p b { color: var(--ink); font-weight: 400; }
+.plain .big { font: 300 96px/1 var(--sans); letter-spacing: -.04em; color: var(--ink); }
+
+@media (max-width: 480px) {
+  .site { padding: 20px 18px 40px; }
+  .list, .reader, .plain { margin-top: 64px; }
+  .reader h1.title { font-size: 27px; }
+  .prose { font-size: 17px; }
+  .entries { gap: 40px; }
+  .entry { grid-template-columns: 1fr; gap: 14px; }
+  .entry .cover { width: 100%; }
+  .foot { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .foot .links { margin-left: 0; }
+}

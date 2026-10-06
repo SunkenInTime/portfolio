@@ -1,7 +1,10 @@
 ---
-import Base from '../layouts/Base.astro';
+import Site from '../layouts/Site.astro';
 ---
 
-<Base title="404 | Dara Adedeji" list>
-  <div class="not-found">404</div>
-</Base>
+<Site title="404 | Dara Adedeji" noindex>
+  <section class="plain">
+    <div class="big">404</div>
+    <p>Nothing here. <a class="u" href="/"><b>Back home</b></a>.</p>
+  </section>
+</Site>

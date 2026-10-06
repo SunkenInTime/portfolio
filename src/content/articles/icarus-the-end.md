@@ -1,4 +1,5 @@
 ---
+archived: true
 title: "Icarus: Flying Too Close to the Sun (and Loving Every Minute)"
 description: "The story of building an open-source Valorant strategy tool, one mental breakdown at a time"
 date: 2026-02-03

@@ -4,13 +4,13 @@ description: "Where you finally use what you learnt in Pre-calc, and SVGs contin
 date: 2025-01-10
 image: "/images/i_am_coding.png"
 ---
-## The Good News First! 🎉
+## The Good News First!
 
 Remember when I said I was building an open-source Valorant strategy tool? Well, we've made some serious progress! We now have custom ability icons for (almost) all agents. Sorry Deadlock, you're still on my todo list.
 
 The biggest win? We've got every agent imported - including Tejo, who was literally released yesterday. And yes, I'm absolutely going to brag about having Tejo's abilities implemented before Valoplant. Small victories, right?
 
-## The Great Measurement Mystery 📏
+## The Great Measurement Mystery
 
 Remember when you thought converting measurements would be simple? Yeah, me too. The journey of implementing custom ability icons turned into an adventure of converting between Icarus's measurement system and Valorant's meters.
 
@@ -29,11 +29,11 @@ Plot twist: Valoplant's proposed size for Sova's dart was off by about 3 meters 
  Also, during this debugging marathon, I discovered my map drawing was "slightly" (read: significantly) elongated. Nothing like fixing one bug to discover three more!
 
 
-## The Web Plot Twist 🌐
+## The Web Plot Twist
 
 Remember how I said Icarus would be strictly offline? Well... plans change! I'm considering a web version, but with a twist. The idea is to host it on a free tier initially to make it more accessible. Once we hit a sizeable user base (and it starts costing me money), we'll charge for the website and online sync features - but keep everything free on desktop/iPad applications. Because why make things simple when you can make them interesting?
 
-## Current Battles with Flutter 🥊
+## Current Battles with Flutter
 
 ### The Center Point Saga
 Getting center point dragging to work properly has been... an experience. Here's what I've tried:
@@ -44,7 +44,7 @@ Getting center point dragging to work properly has been... an experience. Here's
 
 3. **The Theoretical Solution**: Make only the ability icon draggable and wrap everything else. Sounds great in theory, still figuring out the implementation. Currently filed under "good ideas I haven't broken yet."
 
-### The Rotation Saga 🔄
+### The Rotation Saga
 
 If you ever want to watch a developer lose their mind, ask them to implement dynamic widget rotation in Flutter. Here's why:
 
@@ -59,7 +59,7 @@ After abandoning `direction` entirely, I went old school with trigonometry. `ata
 Here's what it currently looks like:
 ![Current image of icarus](https://l7y6qjyp5m.ufs.sh/f/usun6XPoM0UCpPdLpPeWNaYX3kSziMD5UmKObA6uIe7wB0Zl)
 
-## Coming Soon™ Features 🚀
+## Coming Soon™ Features
 
 - Custom ability widgets for special cases (looking at you, Astra ult and Harbor wall)
 - Dynamically scaling ability widgets (pray for me)

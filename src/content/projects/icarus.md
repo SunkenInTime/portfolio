@@ -36,4 +36,3 @@ Built with a minimal, fast workflow in mind, Icarus focuses on practical plannin
 - [Download (Microsoft Store)](https://apps.microsoft.com/detail/9PBWHHZRQFW6)
 - [Devlog video](https://youtu.be/dDn2rafvjMQ)
 - [Privacy policy](/privacy-policies/icarus-privacy/)
-- [Devlog: the Icarus journey](/articles/icarus-the-end/)

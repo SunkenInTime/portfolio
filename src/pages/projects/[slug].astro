@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import { readingTime } from '../../lib/meta';
+import Site from '../../layouts/Site.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -15,25 +14,30 @@ const { project } = Astro.props;
 const { Content } = await render(project);
 ---
 
-<Base
+<Site
   title={`${project.data.title} | Dara Adedeji`}
   description={project.data.description}
   image={project.data.image}
+  section="work"
 >
-  <article class="post-single">
-    <header class="post-header">
-      <div class="breadcrumbs">
-        <a href="/">Home</a>&nbsp;»&nbsp;<a href="/projects/">Projects</a>
-      </div>
-      <h1 class="post-title">{project.data.title}</h1>
-      <div class="post-description">{project.data.description}</div>
-      <div class="post-meta">
-        {readingTime(project.body)}&nbsp;·&nbsp;Dara Adedeji
-      </div>
+  <article class="reader">
+    <aside class="toc" id="toc" aria-label="Sections"><div class="toc-inner" id="toc-inner"></div></aside>
+    <header>
+      <div class="kicker">{project.data.timeframe} · {project.data.status}</div>
+      <h1 class="title">{project.data.title}</h1>
+      <p class="desc">{project.data.tagline}</p>
     </header>
-    <div class="post-content">
+    <div class="prose" id="prose">
       <Content />
     </div>
-    <footer class="post-footer"></footer>
   </article>
-</Base>
+</Site>
+
+<script>
+  import { sectionMarker } from '../../lib/toc.js';
+  const aside = document.getElementById('toc'), inner = document.getElementById('toc-inner'), prose = document.getElementById('prose');
+  if (aside && inner && prose) {
+    const m = sectionMarker(inner, prose, { reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches });
+    if (!m) aside.hidden = true;
+  }
+</script>

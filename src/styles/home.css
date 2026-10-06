@@ -1,0 +1,43 @@
+/* Home only. Tokens, footer and the underline live in tokens.css. */
+@import './tokens.css';
+
+.flock { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+.home {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 24px 72px;
+}
+
+.me { text-align: center; max-width: 36ch; }
+
+.portrait { position: relative; width: 360px; height: 360px; margin: -40px auto -10px; }
+.portrait canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.portrait #ring { pointer-events: none; }
+.portrait img { position: absolute; left: 50%; top: 50%; width: 223px; height: 223px; transform: translate(-50%, -50%); border-radius: 50%; object-fit: cover; }
+.portrait.live img { display: none; }
+
+.me h1 { font: 400 26px/1.2 var(--sans); letter-spacing: -.012em; }
+.me .line { color: var(--mute); margin-top: 10px; font-size: 16px; font-weight: 300; }
+
+.me nav { margin-top: 30px; display: flex; gap: 26px; justify-content: center; font: 13px var(--mono); }
+.me nav a { position: relative; padding-bottom: 3px; }
+.me nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .5s cubic-bezier(.2, .8, .2, 1); }
+.me nav a:hover::after, .me nav a:focus-visible::after { transform: scaleX(1); }
+.me nav a:focus-visible { outline: none; }
+
+.foot { position: fixed; left: 0; right: 0; bottom: 18px; z-index: 1; padding: 0 24px; }
+
+@media (max-width: 480px) {
+  .portrait { width: 280px; height: 280px; margin-top: -24px; }
+  .portrait img { width: 174px; height: 174px; }
+  .me nav { gap: 20px; }
+  .foot { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .foot .links { margin-left: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .me nav a::after { transition: none; }
+}

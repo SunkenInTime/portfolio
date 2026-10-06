@@ -2,3 +2,13 @@ node_modules/
 dist/
 .astro/
 .DS_Store
+
+# local Spotify credentials for the mock server
+dev/.spotify.json
+
+# local env (dev conveniences such as PUBLIC_API_BASE)
+.env
+.env.*
+
+# ElevenLabs reference captures, local only
+dev/ref/

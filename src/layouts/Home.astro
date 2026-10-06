@@ -1,0 +1,37 @@
+---
+import '../styles/home.css';
+import { HEAD_SCRIPT } from '../lib/theme.js';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Dara Adedeji. I build software, film myself doing it, and occasionally write about why.' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Dara Adedeji" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL('/images/myProfile.jpg', Astro.site)} />
+    <link rel="canonical" href={new URL('/', Astro.site)} />
+    <link rel="icon" href="/images/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f7f7f4" />
+    <script is:inline set:html={HEAD_SCRIPT} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
